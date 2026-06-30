@@ -1,0 +1,50 @@
+﻿@model UserAuth.ModelView.LoginViewModel
+
+
+    @{ 
+        
+        ViewData["Title"] = "Login";
+
+    }
+
+    <div class="container-fluid ">
+        <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-6 p-3 bg-body-tertiary mylogin">
+                   <h1>Login</h1>
+                   <form method="post" >
+                       <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                       <div>
+                          <label asp-for="Email" class="form-label fw-bold"></label>
+                          <input asp-for="Email" class="form-control" />
+                          <span asp-validation-for="Email" class="text-danger"></span>
+                       </div>
+
+                       
+                <div>
+                    <label asp-for="Password" class="form-label fw-bold"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="float-end">
+                    <a asp-controller="User" asp-action="Forgot"class="text-decoration-none mt-3 text-dark">Forgot</a>
+                </div>
+                <div class="form-check mb-3 mt-3">
+                    <input asp-for="Rememberme" class="form-check-input" />
+                    <label asp-for="Rememberme" class="fw-bold"></label>
+                </div>
+
+                <input type="submit" class="btn btn-primary"  value="Submit"/>
+                <p class="text-center mb-3">
+                    Don't Have any account? <a asp-controller="User" asp-action="Register" class="text-dark text-decoration-none">Register</a>
+                </p>
+                <div class="text-center">
+                    <a asp-controller="Home" asp-action="Index" class="text-dark text-decoration-none">Back</a>
+                </div>
+                   </form>
+
+
+             </div>
+        </div>
+    </div>

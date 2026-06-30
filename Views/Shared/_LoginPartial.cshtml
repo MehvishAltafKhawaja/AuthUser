@@ -1,0 +1,40 @@
+﻿
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<Users> userManager;
+@inject SignInManager<Users> signInManager;
+
+
+    <ul class="navbar-nav ms-0 auto">
+       
+        @if(signInManager.IsSignedIn(User))
+
+    {
+        var user = userManager.Users.FirstOrDefault(x => x.Email == userManager.GetUserName(User));
+        string name = user.Name;
+        string email = user.Email;
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Home" asp-action="Profile">@name</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Course" asp-action="Course">Student_Course</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="User" asp-action="ChangePassword">Change Password</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="User" asp-action="Logout">Logout</a>
+        </li>
+    }
+    else
+    {
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="User" asp-action="Register">Register</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="User" asp-action="Login">Login</a>
+        </li>
+    }
+</ul>
