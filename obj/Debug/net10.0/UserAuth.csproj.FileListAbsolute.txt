@@ -279,3 +279,4 @@ C:\Users\HP\source\repos\UserAuth\UserAuth\obj\Debug\net10.0\UserAuth.pdb
 C:\Users\HP\source\repos\UserAuth\UserAuth\obj\Debug\net10.0\UserAuth.genruntimeconfig.cache
 C:\Users\HP\source\repos\UserAuth\UserAuth\obj\Debug\net10.0\ref\UserAuth.dll
 C:\Users\HP\source\repos\UserAuth\UserAuth\obj\Debug\net10.0\compressed\szsl3ibw5d-{0}-37j53bjcp8-37j53bjcp8.gz
+C:\Users\HP\source\repos\UserAuth\UserAuth\obj\Debug\net10.0\UserAuth.sourcelink.json

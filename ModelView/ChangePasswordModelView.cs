@@ -18,7 +18,7 @@ namespace UserAuth.ModelView
 
         [Required(ErrorMessage = "Please Enter New Password..")]
         [StringLength(40, MinimumLength = 8, ErrorMessage = "The {0}  must be at {2} and at max {1} character long")]
-        [Compare("ConfirmPassword", ErrorMessage = "Password Does Not Match!..")]
+        [Compare("ConfirmNewPassword", ErrorMessage = "Password Does Not Match!..")]
         [DataType(DataType.Password)]
         public string NewPassword { get; set; }
 
