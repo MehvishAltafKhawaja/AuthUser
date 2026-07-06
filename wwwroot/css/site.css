@@ -41,3 +41,68 @@ body {
     box-shadow : 0 0 10px black;
     border-radius : 10px;
 }
+
+
+/*Login Page Css */
+
+body {
+    background: linear-gradient(135deg,#eef2ff,#ffffff);
+}
+
+.card {
+    transition: .3s;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+.form-control {
+    border-radius: 10px;
+}
+
+.btn {
+    border-radius: 10px;
+}
+
+.min-vh-100 {
+    min-height: 85vh;
+}
+
+/*------------------------------------------------------*/
+
+
+/*Register*/
+
+body {
+    background: linear-gradient(135deg,#eef2ff,#ffffff);
+}
+
+.card {
+    border-radius: 20px;
+    transition: 0.3s ease;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0,0,0,.12);
+    }
+
+.form-control {
+    border-radius: 10px;
+    padding: 12px;
+}
+
+    .form-control:focus {
+        box-shadow: 0 0 0 .2rem rgba(13,110,253,.15);
+    }
+
+.btn {
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.min-vh-100 {
+    min-height: 85vh;
+}
+

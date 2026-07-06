@@ -1,46 +1,102 @@
-﻿@model UserAuth.ModelView.RegistraViewModel
+﻿
+@model UserAuth.ModelView.RegistraViewModel
 
 @{
-    ViewData["Title"] = "Register User";
+    ViewData["Title"] = "Register";
 }
 
-<div class="container-fluid">
-    <div class="row">
-         <div class="col-sm-12 col-md-12 col-lg-6 p-5 regform">
-             <h1 class="mb-4">Register</h1>
-             <form method="post">
-                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                 <div class="mb-3">
-                     <label asp-for="Name" class="form-label"></label>
-                     <input asp-for="Name" class="form-control" />
-                     <span asp-validation-for="Name" class="text-danger"></span>
-                 </div>
-                <div class="mb-3">
-                    <label asp-for="Email" class="form-label"></label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <label asp-for="Password" class="form-label"></label>
-                    <input type="password" asp-for="Password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <label asp-for="ConfirmPassword" class="form-label"></label>
-                    <input type="password" asp-for="ConfirmPassword" class="form-control" />
-                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+<div class="container py-5">
+    <div class="row justify-content-center align-items-center min-vh-100">
+
+        <div class="col-lg-6 col-md-8 col-sm-11">
+
+            <div class="card border-0 shadow-lg rounded-4">
+
+                <div class="card-body p-5">
+
+                    <div class="text-center mb-4">
+                        <h2 class="fw-bold text-primary">Create Account</h2>
+                        <p class="text-muted mb-0">
+                            Fill in the details below to create your account.
+                        </p>
+                    </div>
+
+                    <form method="post">
+
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label fw-semibold"></label>
+                            <input asp-for="Name"
+                                   class="form-control form-control-lg"
+                                   placeholder="Enter your full name" />
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label fw-semibold"></label>
+                            <input asp-for="Email"
+                                   class="form-control form-control-lg"
+                                   placeholder="Enter your email address" />
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label fw-semibold"></label>
+                            <input asp-for="Password"
+                                   type="password"
+                                   class="form-control form-control-lg"
+                                   placeholder="Create a password" />
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="ConfirmPassword" class="form-label fw-semibold"></label>
+                            <input asp-for="ConfirmPassword"
+                                   type="password"
+                                   class="form-control form-control-lg"
+                                   placeholder="Confirm your password" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-grid mb-3">
+                            <button type="submit"
+                                    class="btn btn-primary btn-lg rounded-3">
+                                Create Account
+                            </button>
+                        </div>
+
+                        <hr />
+
+                        <p class="text-center mb-2">
+                            Already have an account?
+                            <a asp-controller="User"
+                               asp-action="Login"
+                               class="text-decoration-none fw-semibold">
+                                Login
+                            </a>
+                        </p>
+
+                        <div class="text-center">
+                            <a asp-controller="Home"
+                               asp-action="Index"
+                               class="btn btn-outline-secondary rounded-3">
+                                ← Back to Home
+                            </a>
+                        </div>
+
+                    </form>
+
                 </div>
 
-                <div class="mb-3">
-                    <input type="Submit" class="btn btn-primary" value="Register" />
-                </div>
-                <p class="text-center mb-3">
-                     Already Having an account? <a asp-controller="User" asp-action="Login" class="text-blue">Login</a>
-                </p>
-                <div>
-                    <a asp-controller="Home" asp-action="Index" class="text-dark align-text-center">Back</a>
-                </div>
-             </form>
-         </div>
+            </div>
+
+        </div>
+
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+```

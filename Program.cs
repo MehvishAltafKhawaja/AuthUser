@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddDbContext<UserdbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("constr")));
 builder.Services.AddIdentity<Users, IdentityRole>(option =>
 {
@@ -21,6 +22,14 @@ builder.Services.AddIdentity<Users, IdentityRole>(option =>
     option.SignIn.RequireConfirmedAccount = false;
     
     }).AddEntityFrameworkStores<UserdbContext>().AddDefaultTokenProviders();
+builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+{
+    options.TokenLifespan = TimeSpan.FromSeconds(120);
+});
+builder.Services.PostConfigure<DataProtectionTokenProviderOptions>(options =>
+{
+    Console.WriteLine($"Configured Token Lifetime: {options.TokenLifespan}");
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -33,7 +42,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();

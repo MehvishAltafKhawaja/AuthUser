@@ -1,50 +1,96 @@
-﻿@model UserAuth.ModelView.LoginViewModel
+﻿
+@model UserAuth.ModelView.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
 
 
-    @{ 
-        
-        ViewData["Title"] = "Login";
 
-    }
+<div class="container py-5">
+    <div class="row justify-content-center align-items-center min-vh-100">
 
-    <div class="container-fluid ">
-        <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-6 p-3 bg-body-tertiary mylogin">
-                   <h1>Login</h1>
-                   <form method="post" >
-                       <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-lg-5 col-md-7 col-sm-11">
 
-                       <div>
-                          <label asp-for="Email" class="form-label fw-bold"></label>
-                          <input asp-for="Email" class="form-control" />
-                          <span asp-validation-for="Email" class="text-danger"></span>
-                       </div>
+            <div class="card border-0 shadow-lg rounded-4">
 
-                       
-                <div>
-                    <label asp-for="Password" class="form-label fw-bold"></label>
-                    <input asp-for="Password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
+                <div class="card-body p-5">
+
+                    <div class="text-center mb-4">
+                        <h2 class="fw-bold text-primary">Welcome Back</h2>
+                        <p class="text-muted mb-0">
+                            Sign in to continue to your account
+                        </p>
+                    </div>
+
+                    <form method="post">
+
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label fw-semibold"></label>
+                            <input asp-for="Email" class="form-control form-control-lg" placeholder="Enter your email" />
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label fw-semibold"></label>
+                            <input asp-for="Password" class="form-control form-control-lg" placeholder="Enter your password" />
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+
+                            <div class="form-check">
+                                <input asp-for="Rememberme" class="form-check-input" />
+                                <label asp-for="Rememberme" class="form-check-label"></label>
+                            </div>
+
+                            <a asp-controller="User"
+                               asp-action="ForgotPassword"
+                               class="text-decoration-none">
+                                Forgot Password?
+                            </a>
+
+                        </div>
+
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-primary btn-lg rounded-3">
+                                Login
+                            </button>
+                        </div>
+
+                        <hr />
+
+                        <p class="text-center mb-2">
+                            Don't have an account?
+                            <a asp-controller="User"
+                               asp-action="Register"
+                               class="text-decoration-none fw-semibold">
+                                Register
+                            </a>
+                        </p>
+
+                        <div class="text-center">
+                            <a asp-controller="Home"
+                               asp-action="Index"
+                               class="btn btn-outline-secondary rounded-3">
+                                ← Back to Home
+                            </a>
+                        </div>
+
+                    </form>
+
                 </div>
 
-                <div class="float-end">
-                    <a asp-controller="User" asp-action="ForgotPassword"class="text-decoration-none mt-3 text-dark">Forgot</a>
-                </div>
-                <div class="form-check mb-3 mt-3">
-                    <input asp-for="Rememberme" class="form-check-input" />
-                    <label asp-for="Rememberme" class="fw-bold"></label>
-                </div>
+            </div>
 
-                <input type="submit" class="btn btn-primary"  value="Submit"/>
-                <p class="text-center mb-3">
-                    Don't Have any account? <a asp-controller="User" asp-action="Register" class="text-dark text-decoration-none">Register</a>
-                </p>
-                <div class="text-center">
-                    <a asp-controller="Home" asp-action="Index" class="text-dark text-decoration-none">Back</a>
-                </div>
-                   </form>
-
-
-             </div>
         </div>
+
     </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+```

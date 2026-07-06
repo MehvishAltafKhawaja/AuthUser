@@ -10,6 +10,7 @@ using System.Text.Encodings.Web;
 using UserAuth.helper;
 using UserAuth.Models;
 using UserAuth.ModelView;
+using Microsoft.Extensions.Options;
 
 namespace UserAuth.Controllers
 {
@@ -159,6 +160,9 @@ namespace UserAuth.Controllers
         {
 
             // generate token for password reset
+            var provider = userManager.Options.Tokens.PasswordResetTokenProvider;
+            Console.WriteLine($"Password Reset Provider: {provider}");
+
             var token = await userManager.GeneratePasswordResetTokenAsync(user);
 
             // create a password reset link
@@ -256,22 +260,35 @@ namespace UserAuth.Controllers
         }
 
         [HttpPost]
-
+        [AllowAnonymous]
         public async Task<IActionResult> ResetPassword(ResetPasswordModelView model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var user = await userManager.FindByEmailAsync(model.Email);
-                if (user != null)
-                {
-                    await userManager.ResetPasswordAsync(user, model.Token, model.Password);
-                    return RedirectToAction("ResetPasswordConfirmation", "User");
-                }
+                return View(model);
             }
 
+            var user = await userManager.FindByEmailAsync(model.Email);
+
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Invalid user.");
+                return View(model);
+            }
+
+            var result = await userManager.ResetPasswordAsync(user, model.Token, model.Password);
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction("ResetPasswordConfirmation");
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error.Description);
+            }
 
             return View(model);
-
         }
 
         [AllowAnonymous]
