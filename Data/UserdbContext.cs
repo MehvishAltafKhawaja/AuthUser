@@ -6,7 +6,8 @@ namespace UserAuth.Data
 {
     public class UserdbContext:IdentityDbContext<Users>
     {
-        public UserdbContext(DbContextOptions option):base (option)
+        public UserdbContext(DbContextOptions<UserdbContext> options)
+    : base(options)
         {
 
         }

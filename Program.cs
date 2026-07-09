@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<UserdbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("constr")));
+builder.Services.AddDbContext<StudentSearchContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("constr2")));
 builder.Services.AddIdentity<Users, IdentityRole>(option =>
 {
     option.Password.RequiredLength = 8;
@@ -24,7 +25,7 @@ builder.Services.AddIdentity<Users, IdentityRole>(option =>
     }).AddEntityFrameworkStores<UserdbContext>().AddDefaultTokenProviders();
 builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
 {
-    options.TokenLifespan = TimeSpan.FromSeconds(120);
+    options.TokenLifespan = TimeSpan.FromSeconds(40);
 });
 builder.Services.PostConfigure<DataProtectionTokenProviderOptions>(options =>
 {

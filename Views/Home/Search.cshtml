@@ -1,0 +1,140 @@
+﻿@model UserAuth.ModelView.CourseWiseStudent
+@{
+    ViewData["Title"] = "Course Details";
+}
+
+<html>
+<head>
+    <style>
+            .card {
+                border-radius: 15px;
+            }
+
+            .card-header {
+                font-weight: 600;
+            }
+
+            .table {
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            .badge {
+                font-size: 14px;
+            }
+
+            .btn {
+                border-radius: 10px;
+            }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+
+        <!-- Course Details Card -->
+        <div class="card shadow border-0 mb-4">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">📚 Course Details</h3>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <label class="fw-bold text-muted">Course ID</label>
+                        <p>@Model.crsDetails.CourseId</p>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="fw-bold text-muted">Course Name</label>
+                        <p>@Model.crsDetails.CourseName</p>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="fw-bold text-muted">Duration</label>
+                        <p>@Model.crsDetails.CourseDuration</p>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="fw-bold text-muted">Course Fee</label>
+                        <p class="text-success fw-bold">
+                            ₹@Model.crsDetails.Coursefee
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Student Details -->
+        <div class="card shadow border-0">
+
+            <div class="card-header bg-success text-white">
+                <h3 class="mb-0">
+                    👨‍🎓 Students Enrolled
+                    <span class="badge bg-light text-dark ms-2">
+                        @Model.studDetails.Count
+                    </span>
+                </h3>
+            </div>
+
+            <div class="card-body">
+
+                @if (Model.studDetails.Count > 0)
+                {
+                    <div class="table-responsive">
+
+                        <table class="table table-hover table-striped align-middle">
+
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Name</th>
+                                    <th>Gender</th>
+                                    <th>Date of Birth</th>
+                                    <th>Phone</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @foreach (var item in Model.studDetails)
+                                {
+                                    <tr>
+                                        <td>@item.StudId</td>
+                                        <td>@item.StudName</td>
+                                        <td>@item.StudGen</td>
+                                        <td>@item.StudDob</td>
+                                        <td>@item.StudPhn</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-warning text-center">
+                        <h4 class="mb-0">
+                            ⚠ No Students Found For This Course
+                        </h4>
+                    </div>
+                }
+
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <div class="mt-4">
+            <a href="/" class="btn btn-secondary">
+                ← Back to Search
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>

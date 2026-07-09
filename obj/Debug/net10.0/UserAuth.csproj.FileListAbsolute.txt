@@ -278,7 +278,6 @@ C:\Users\HP\source\repos\UserAuth\UserAuth\obj\Debug\net10.0\refint\UserAuth.dll
 C:\Users\HP\source\repos\UserAuth\UserAuth\obj\Debug\net10.0\UserAuth.pdb
 C:\Users\HP\source\repos\UserAuth\UserAuth\obj\Debug\net10.0\UserAuth.genruntimeconfig.cache
 C:\Users\HP\source\repos\UserAuth\UserAuth\obj\Debug\net10.0\ref\UserAuth.dll
-C:\Users\HP\source\repos\UserAuth\UserAuth\obj\Debug\net10.0\compressed\szsl3ibw5d-{0}-37j53bjcp8-37j53bjcp8.gz
 C:\Users\HP\source\repos\UserAuth\UserAuth\obj\Debug\net10.0\UserAuth.sourcelink.json
 D:\.netTesting\MYASP.NET\AuthUser\AuthUser\bin\Debug\net10.0\BuildHost-net472\Microsoft.Build.Locator.dll
 D:\.netTesting\MYASP.NET\AuthUser\AuthUser\bin\Debug\net10.0\BuildHost-net472\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.exe
@@ -562,3 +561,4 @@ D:\.netTesting\MYASP.NET\AuthUser\AuthUser\obj\Debug\net10.0\UserAuth.genruntime
 D:\.netTesting\MYASP.NET\AuthUser\AuthUser\obj\Debug\net10.0\ref\UserAuth.dll
 D:\.netTesting\MYASP.NET\AuthUser\AuthUser\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 D:\.netTesting\MYASP.NET\AuthUser\AuthUser\obj\Debug\net10.0\compressed\szsl3ibw5d-{0}-znwtpcu6w0-znwtpcu6w0.gz
+C:\Users\HP\source\repos\UserAuth\UserAuth\obj\Debug\net10.0\compressed\szsl3ibw5d-{0}-p5hw11t408-p5hw11t408.gz
