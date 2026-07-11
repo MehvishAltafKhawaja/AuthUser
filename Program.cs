@@ -10,6 +10,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<UserdbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("constr")));
 builder.Services.AddDbContext<StudentSearchContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("constr2")));
+builder.Services.AddDbContext<EmployeeDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("constr3")));
 builder.Services.AddIdentity<Users, IdentityRole>(option =>
 {
     option.Password.RequiredLength = 8;
