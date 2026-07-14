@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UserAuth.Data;
@@ -12,11 +13,18 @@ namespace UserAuth.Controllers
     public class AdminController : Controller
     {   private readonly EmployeeDbContext context;
         private readonly IWebHostEnvironment env;
-         
-        public AdminController(EmployeeDbContext context, IWebHostEnvironment env)
+        private readonly UserManager<Users> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
+        public AdminController(
+            EmployeeDbContext context,
+            UserManager<Users> userManager,
+            RoleManager<IdentityRole> roleManager,
+            IWebHostEnvironment env)
         {
             this.context = context;
             this.env = env;
+            this.userManager = userManager;
+            this.roleManager = roleManager;
         }
 
         public async Task<IActionResult> EmployeeRecord()
@@ -68,10 +76,66 @@ namespace UserAuth.Controllers
             }
             return View(model);
         }
-       
 
-     
 
+        //Changing role of  users
+        public async Task<IActionResult> Users()
+        {
+            var users = userManager.Users.ToList();
+
+            return View(users);
+        }
+
+        public async Task<IActionResult> ChangeRole(string id)
+        {
+
+            var user = await userManager.FindByIdAsync(id);
+
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+
+            ViewBag.Roles = roleManager.Roles.ToList();
+
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeRole(
+          string UserId,
+          string Role)
+        {
+
+            var user = await userManager.FindByIdAsync(UserId);
+
+
+            if (user != null)
+            {
+
+                var oldRoles = await userManager.GetRolesAsync(user);
+
+
+                await userManager.RemoveFromRolesAsync(
+                    user,
+                    oldRoles
+                );
+
+
+                await userManager.AddToRoleAsync(
+                    user,
+                    Role
+                );
+
+            }
+
+
+            return RedirectToAction("Users");
+
+        }
 
     }
 }

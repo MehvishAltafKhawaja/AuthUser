@@ -1,0 +1,34 @@
+﻿@model UserAuth.Models.Users
+
+
+<h2>Change Role</h2>
+
+
+<form asp-action="ChangeRole" method="post">
+
+
+    <input type="hidden"
+           name="UserId"
+           value="@Model.Id" />
+
+
+    <select name="Role" class="form-control">
+
+        @foreach (var role in ViewBag.Roles)
+        {
+            <option value="@role.Name">
+                @role.Name
+            </option>
+        }
+
+    </select>
+
+
+    <br />
+
+    <button class="btn btn-success">
+        Update Role
+    </button>
+
+
+</form>

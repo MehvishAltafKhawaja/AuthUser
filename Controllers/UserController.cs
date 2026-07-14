@@ -322,27 +322,41 @@ namespace UserAuth.Controllers
 
         public async Task<IActionResult> CreateAdmin()
         {
+            var userExists = await userManager.FindByEmailAsync("admin@gmail.com");
+
+            if (userExists != null)
+            {
+                return Content("Admin already exists");
+            }
+
+
             Users admin = new Users()
             {
-                Name = "Admin",
+                Name = "Administrator",
+                UserName = "admin@gmail.com",
                 Email = "admin@gmail.com",
-                UserName = "admin@gmail.com"
+                EmailConfirmed = true
             };
 
 
-            var result = await userManager.CreateAsync(
-                admin,
-                "Admin@123"
-            );
+            var result = await userManager.CreateAsync(admin, "Admin@123");
 
 
             if (result.Succeeded)
             {
                 await userManager.AddToRoleAsync(admin, "Admin");
+
+                return Content("Admin Created Successfully");
             }
 
 
-            return Content("Admin Created Successfully");
+            foreach (var error in result.Errors)
+            {
+                Console.WriteLine(error.Description);
+            }
+
+
+            return Content("Admin Creation Failed");
         }
     }
 }
