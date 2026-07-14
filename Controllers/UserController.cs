@@ -18,11 +18,13 @@ namespace UserAuth.Controllers
     {
         public readonly UserManager<Users> userManager;
         public readonly SignInManager<Users> signInManager;
+        public readonly RoleManager<IdentityRole> roleManager;
 
-        public UserController(UserManager<Users> userManager, SignInManager<Users> signInManager)
+        public UserController(UserManager<Users> userManager, SignInManager<Users> signInManager, RoleManager<IdentityRole> roleManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.roleManager = roleManager;
         }
 
         [HttpGet]
@@ -48,6 +50,7 @@ namespace UserAuth.Controllers
                 var result = await userManager.CreateAsync(u, model.Password);
                 if (result.Succeeded)
                 {
+                    await userManager.AddToRoleAsync(u, "Student");
                     SandMail mail = new SandMail();
                     string msg = "Dear" + model.Name + ", <br/><br/> You Have Successfully Registered on ILS Srinagar <br/><b> Your Userid : " + model.Email + "<br/> Password : " + model.Password + "</b><br/><br/> Regards, <br/> <font color='Blue' size='5px'> Ils Srinagar</font>";
                     mail.SendMail(model.Email, "Ils Registeration Completed", msg);
@@ -296,6 +299,50 @@ namespace UserAuth.Controllers
         public IActionResult ResetPasswordConfirmation()
         {
             return View();
+        }
+
+        public async Task CreateRoles()
+        {
+            string[] roles =
+            {
+               "Admin",
+               "Employee",
+               "Student"
+            };
+
+
+            foreach (var role in roles)
+            {
+                if (!await roleManager.RoleExistsAsync(role))
+                {
+                    await roleManager.CreateAsync(new IdentityRole(role));
+                }
+            }
+        }
+
+        public async Task<IActionResult> CreateAdmin()
+        {
+            Users admin = new Users()
+            {
+                Name = "Admin",
+                Email = "admin@gmail.com",
+                UserName = "admin@gmail.com"
+            };
+
+
+            var result = await userManager.CreateAsync(
+                admin,
+                "Admin@123"
+            );
+
+
+            if (result.Succeeded)
+            {
+                await userManager.AddToRoleAsync(admin, "Admin");
+            }
+
+
+            return Content("Admin Created Successfully");
         }
     }
 }

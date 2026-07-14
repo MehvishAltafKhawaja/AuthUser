@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UserAuth.Data;
 using UserAuth.Models;
 using UserAuth.ModelView;
 
+
 namespace UserAuth.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {   private readonly EmployeeDbContext context;
         private readonly IWebHostEnvironment env;

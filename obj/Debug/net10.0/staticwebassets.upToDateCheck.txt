@@ -61,6 +61,8 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
+wwwroot\EmployeeImage\6704d956-528d-46d4-9f98-e15387fc66ad_pexels-nida-kurt-5079840-7525696.jpg
+wwwroot\EmployeeImage\e36ccde2-c931-45bc-b357-8b0630cef4c4_pexels-mart-production-9558711.jpg
 C:\Users\HP\source\repos\UserAuth\UserAuth\wwwroot\lib\jquery\LICENSE.txt
 C:\Users\HP\source\repos\UserAuth\UserAuth\wwwroot\css\site.css
 C:\Users\HP\source\repos\UserAuth\UserAuth\wwwroot\favicon.ico
